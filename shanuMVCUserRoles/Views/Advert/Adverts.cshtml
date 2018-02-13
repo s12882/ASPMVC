@@ -1,0 +1,165 @@
+﻿@model PagedList.IPagedList<ASPMVC.Models.ServiceViewModel>
+@using PagedList.Mvc;
+@using ASPMVC.Controllers
+<link href="~/Content/css/PagedList.css" rel="stylesheet" />
+
+
+@{
+    AdvertController advCtrl = new AdvertController();
+    int advnum = 0;
+}
+
+<div style="overflow:hidden;width:100%;">
+    <table style="float:right;">
+        <tr>
+            <th>Sort by :</th>
+            <th>
+                @using (Html.BeginForm("Index", "Advert", FormMethod.Get))
+                {
+                if (ViewBag.CurrentSearchCategory != null)
+                {
+                    foreach (var item in ViewBag.CurrentSearchCategory)
+                    {
+                            <input type="hidden" name="searchCategory" value="@item" />
+                        }
+                    }
+                    if (ViewBag.CurrentSearchTag != null)
+                    {
+                        foreach (var item in ViewBag.CurrentSearchTag)
+                        {
+                            <input type="hidden" name="searchTag" value="@item" />
+                        }
+                    }
+                    <input type="hidden" name="searchString" value="@ViewBag.CurrentSearchString" />
+                    <input type="hidden" name="sortOrder" value="@ViewBag.DateSortParm" />
+                    <input class="submitBtnLink" type="submit" value="Date" />
+                }
+            </th>
+            <th class="tableTitle">
+                @using (Html.BeginForm("Index", "Advert", FormMethod.Get))
+            {
+                if (ViewBag.CurrentSearchCategory != null)
+                {
+                    foreach (var item in ViewBag.CurrentSearchCategory)
+                    {
+                            <input type="hidden" name="searchCategory" value="@item" />
+                        }
+                    }
+                    if (ViewBag.CurrentSearchTag != null)
+                    {
+                        foreach (var item in ViewBag.CurrentSearchTag)
+                        {
+                            <input type="hidden" name="searchTag" value="@item" />
+                        }
+                    }
+                    <input type="hidden" name="searchString" value="@ViewBag.CurrentSearchString" />
+                    <input type="hidden" name="sortOrder" value="@ViewBag.TitleSortParm" />
+                    <input class="submitBtnLink" type="submit" value="Title" />
+                }
+            </th>
+        </tr>
+    </table>
+</div>
+
+
+
+@foreach (var adv in Model)
+{
+    advnum++;
+    var total = adv.AdvLikes - adv.AdvDislikes;
+    <div class="postDescContainer">
+
+        <div class="postPubDate">
+            <div>@adv.PostedOn.ToShortDateString()</div>
+        </div>
+        <a href="#">
+            <div class="postDescTitle"><h3>@Html.ActionLink(@adv.Title, "Advert", "Advert", new { slug = @adv.UrlSlug }, null)</h3></div>
+        </a>
+        <div class="postDescCategory">
+            <label>Category:&nbsp;</label>
+            @{
+                var advCats = advCtrl.GetAdvCategories(adv.Advert);
+                int advcatnum = 0;
+                foreach (var cat in advCats)
+                {
+                    advcatnum++;
+                    <a href="#">
+                        <div class="postDescCatNames">
+                            @cat.Name@if (advcatnum < advCats.Count())
+                            {
+                                @Html.Raw(",&nbsp;")
+                            }
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+        <div class="postDescBody">
+            @{
+                var advImage = advCtrl.GetAdvImage(adv.Advert);
+                if (advImage != null)
+                {
+                    <div class="postVidCont">
+                        @foreach (var content in advImage)
+                        {
+                            <a href="@content.ImageUrl" class="postVidThumb" target="_blank"><img src="@Url.Content(content.Imagehumbnail)" width="200" height="200" /></a>
+                        }
+                    </div>
+                }
+            }
+            @Html.Raw(adv.ShortDescription)
+            @Html.ActionLink("Read More...", "Advert", "Advert", new {slug = adv.UrlSlug }, null)
+        </div>
+        @if (total >= 0)
+        {
+            <table class="postLikes">
+                <tr>
+                    <td style="text-align:center; color:green; font-style:italic;">@total</td>
+                    <td><img src="@Url.Content("~/Content/images/post/like.png")" width="20" height="20" alt="upvote" /></td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <table class="postDislikes">
+                <tr>
+                    <td style="text-align:center; color:#b50000; font-style:oblique;">@total</td>
+                    <td><img src="@Url.Content("~/Content/images/post/dislike.png")" width="20" height="20" alt="downvote" /></td>
+                </tr>
+            </table>
+        }
+    </div>
+}
+
+<div id="spacer"></div>
+<div class="paging">
+    <div class="pagenum">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </div>
+    @{
+        List<string> searchCatList = new List<string>();
+        List<string> searchTagList = new List<string>();
+        if (ViewBag.CurrentSearchCategory != null)
+        {
+            foreach (var item in ViewBag.CurrentSearchCategory)
+            {
+                searchCatList.Add(item);
+            }
+        }
+        if (ViewBag.CurrentSearchTag != null)
+        {
+            foreach (var item in ViewBag.CurrentSearchTag)
+            {
+                searchTagList.Add(item);
+            }
+        }
+    }
+    @if (ViewBag.CurrentSearchCategory != null || ViewBag.CurrentSearchTag != null)
+    {
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Advert", new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.SearchString }) + "?" + string.Join("&", searchCatList.Select(x => "searchCategory=" + x)) + "&" + string.Join("&", searchTagList.Select(x => "searchTag=" + x)))
+    }
+    else
+    {
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Advert", new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.SearchString }))
+    }
+</div>

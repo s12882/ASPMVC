@@ -1,0 +1,21 @@
+﻿@model ASPMVC.Models.AdvViewModel
+
+@{
+    ViewBag.Title = "Add Video";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddImageToAdv", "Advert", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="addVidCont">
+        <input type="hidden" name="slug" value="@Model.UrlSeo" />
+        <input type="hidden" name="advid" value="@Model.ID" />
+        <input class="addVidToPost" type="url" name="Url" />
+        <input class="addVidBtn" type="submit" value="&#x27a5;" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Main", "Index")
+</div>

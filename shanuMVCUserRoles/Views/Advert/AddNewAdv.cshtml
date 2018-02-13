@@ -1,0 +1,52 @@
+﻿
+@model ASPMVC.Models.AdvViewModel
+@{
+    ViewBag.Title = "Add New Advert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddNewAdv", "Advert", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-style-2">
+    <div class="form-style-2-heading">Create new advert</div>
+    <form method="post">
+
+        <label for="title">@Html.TextBoxFor(m => m.ID, new { @class = "editPostIdInp", @readonly = "readonly", style = "display: none;" })</label>
+        <br>
+        <label for="title">@Html.TextBoxFor(m => m.Author, new { @class = "editPostIdInp", @readonly = "readonly", style = "display: none;" })</label>
+        <br>
+        <label for="title">Title</label>@Html.TextBoxFor(m => m.Title, new { @class = "editPostTitleInp" })<br />
+        <br>
+        <label for="title">Meta</label>@Html.TextBoxFor(m => m.Meta, new { @class = "editPostMeta" })
+        <br>
+        <label for="title">UrlSeo</label>@Html.TextBoxFor(m => m.UrlSeo, new { @class = "editPostSeo" }) 
+        <br>
+       
+        <label for="description"><h3>Short Description</h3></label>
+
+       
+        @Html.TextAreaFor(m => m.ShortDescription, new { @id = "editor1", Value = Model.ShortDescription })
+        <script>
+                            CKEDITOR.replace('editor1');
+        </script>
+
+
+        <label for="description"><h3>Description</h3></label>
+
+        @Html.TextAreaFor(m => m.Body, new { @id = "editor2", Value = Model.Body })
+        <script>
+                            CKEDITOR.replace('editor2');
+        </script>
+        <br>
+
+        <input class="comTextBtn" type="submit" value="&#x27a5;" />
+    </form>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Main", "Index")
+</div>
+
+

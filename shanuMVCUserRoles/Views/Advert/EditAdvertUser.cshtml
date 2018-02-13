@@ -1,0 +1,158 @@
+﻿@model ASPMVC.Models.AdvViewModel
+
+@{
+    ViewBag.Title = "EditAdvertUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("EditAdvertUser", "Advert", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="editPostContainer">
+        <table>
+            <tr>
+                
+                <td colspan="2" class="editPostId">@Html.TextBoxFor(m => m.ID, new { @class = "editPostIdInp", @readonly = "readonly",  style = "display: none;" })</td>
+            </tr>
+
+            <tr>
+                
+                <td colspan="2" class="editPostId">@Html.TextBoxFor(m => m.Author, new { @class = "editPostAuthorInp", @readonly = "readonly",  style = "display: none;" })</td>
+            </tr>
+
+            <tr>
+                <td>Title :</td>
+                <td colspan="2" class="editPostTitle">@Html.TextBoxFor(m => m.Title, new { @class = "editPostTitleInp" })</td>
+            </tr>
+            @if (Model.Images.Count() > 0)
+            {
+                <tr>
+                    @if (Model.Images.Count() == 1)
+                    {
+                        <td><div class="imgurl">Video / Image :</div></td>
+
+                    }
+                    else
+                    {
+                        <td><div class="imgurl">Video / Image :</div></td>
+                    }
+                    <td style="width:30px;"><div class="addbtn"><a href="@Url.Action("AddImageToAdv", "Advert", new { advid = Model.ID,slug=Model.UrlSeo})" class="addremoveBtn" title="Add Video"><img src="@Url.Content("~/Content/images/post/add.png")" width="25" height="25" alt="add" /></a></div></td>
+                    <td class="editPostVideo">
+                        @foreach (var video in Model.Images)
+                        {
+                            <div class="editPostVidCont">
+                                <a href="@video.ImageUrl" class="editPostVideoInp" style="text-decoration:none;color:blue;float:left;"><img src="@video.ImageUrl" width="250px"></a>
+                                <a href="@Url.Action("RemoveImageFromAdv", "Advert", new { advid = Model.ID,slug=Model.UrlSeo, Url=video.ImageUrl })" class="addremoveBtn" title="Remove Video"><img src="@Url.Content("~/Content/images/post/remove.png")" width="25" height="25" alt="remove" /></a>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Video\Image link :</td>
+                    <td colspan="2"><a href="@Url.Action("AddImageToAdv", "Advert", new { advid = Model.ID,slug=Model.UrlSeo})" class="addremoveBtn" title="Add Video"><img src="@Url.Content("~/Content/images/post/add.png")" width="25" height="25" alt="add" /></a></td>
+                </tr>
+            }
+
+            @if (Model.AdvCategories.Count() > 0)
+            {
+                <tr>
+                    @if (Model.AdvCategories.Count() == 1)
+                    {
+                        <td>Category :</td>
+                    }
+                    else
+                    {
+                        <td>Categories :</td>
+                    }
+                    <td style="width:30px;"><a href="@Url.Action("AddCategoryToAdv", "Advert", new { advid = Model.ID})" class="addremoveBtn" title="Add Video"><img src="@Url.Content("~/Content/images/post/add.png")" width="25" height="25" alt="add" /></a></td>
+                    <td class="editPostCategories">
+                        @foreach (var cat in Model.AdvCategories)
+                        {
+                            <div class="editPostCatInp">
+                                <div class="catName">@cat.Name</div>
+                                <a href="@Url.Action("RemoveCategoryFromAdv", "Advert", new { advid = Model.ID,slug=Model.UrlSeo,catName=cat.Name })" class="addremoveBtn" title="Add Video"><img src="@Url.Content("~/Content/images/post/remove.png")" width="25" height="25" alt="add" /></a>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Category :</td>
+                    <td colspan="2"><a href="@Url.Action("AddCategoryToAdv", "Advert", new { advid = Model.ID})" class="addremoveBtn" title="Add Category"><img src="@Url.Content("~/Content/images/post/add.png")" width="25" height="25" alt="add" /></a></td>
+                </tr>
+            }
+            @*@if (Model.PostTags != null)
+            {
+                <tr>
+                    @if (Model.PostTags.Count() == 1)
+                    {
+                        <td>Tag :</td>
+                    }
+                    else
+                    {
+                        <td>Tags :</td>
+                    }
+                    <td style="width:30px;"><a href="@Url.Action("AddTagToAdv", "Advert", new { advid = Model.ID})" class="addremoveBtn" title="Add Video"><img src="@Url.Content("~/Content/images/post/add.png")" width="25" height="25" alt="add" /></a></td>
+                    <td class="editPostTags">
+                        @foreach (var tag in Model.PostTags)
+                        {
+                            <div class="editPostTagInp">
+                                <div class="tagName">@tag.Name</div>
+                                <a href="@Url.Action("RemoveTagFromAdv", "Advert", new { advid = Model.ID,slug=Model.UrlSeo,tagName=tag.Name })" class="addremoveBtn" title="Add Video"><img src="@Url.Content("~/Content/images/post/remove.png")" width="25" height="25" alt="add" /></a>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Tag :</td>
+                    <td colspan="2"><a href="@Url.Action("AddTagToAdv", "Advert", new { advid = Model.ID})" class="addremoveBtn" title="Add Tag"><img src="@Url.Content("~/Content/images/post/add.png")" width="25" height="25" alt="add" /></a></td>
+                </tr>
+            }*@
+
+            <tr>
+                <td>Meta :</td>
+                <td colspan="2">@Html.TextBoxFor(m => m.Meta, new { @class = "editPostMeta" })</td>
+            </tr>
+            <tr>
+                <td>UrlSeo :</td>
+                <td colspan="2">@Html.TextBoxFor(m => m.UrlSeo, new { @class = "editPostSeo" })</td>
+            </tr>
+            <tr>
+                <td>ShortDescription :</td>
+                <td colspan="2" class="editPostDesc">
+                    @Html.TextAreaFor(m => m.ShortDescription, new { @id = "editor1", Value = Model.ShortDescription })
+                    <script>
+                        CKEDITOR.replace('editor1');
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>Body :</td>
+                <td colspan="2" class="editPostBody">
+                    @Html.TextAreaFor(m => m.Body, new { @id = "editor2", Value = Model.Body })
+                    <script>
+                        CKEDITOR.replace('editor2');
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3" class="editPostBody">
+                <input class="comTextBtn" type="submit" value="&#x27a5;" /></td>
+            </tr>
+        </table>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

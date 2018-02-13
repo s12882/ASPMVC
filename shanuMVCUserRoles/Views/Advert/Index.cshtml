@@ -1,0 +1,82 @@
+﻿@model PagedList.IPagedList<ASPMVC.Models.ServiceViewModel>
+@using ASPMVC.Controllers
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var categories = AdvertController.checkCatList;
+    var tags = AdvertController.checkTagList;
+
+}
+
+<div class="blogContainer">
+
+    <div class="mainblogbar">
+
+    @{
+        var rssUrl = Request.Url.Scheme + "://" + Request.Url.Host + "/Advert/feed";
+    }
+    @using (Html.BeginForm("Index", "Advert", FormMethod.Get, new { @class = "indexFilterForm" }))
+            {
+        <label id="cat">Categories</label><br>
+        <nav id="horizontal">
+            <ul>
+
+                @{
+                    var num = 1;
+                }
+               
+                @foreach (var cat in categories)
+                {             
+                    <li>
+                        <div style="width:45%;float:left;">
+                            @if (cat.Checked)
+                            {
+                                <input type="checkbox" class="checkbox" id="checkbox_@num" name="searchCategory" value="@cat.Category.Name" checked="checked" /> 
+                                <label for="checkbox_@num">@cat.Category.Name</label>
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="checkbox" id="checkbox_@num" name="searchCategory" value="@cat.Category.Name" /> 
+                                <label for="checkbox_@num">@cat.Category.Name</label>
+                            }
+                        </div>
+                    </li>
+                    num = num+1;
+                }
+            </ul>
+        </nav>
+        <input class="button6" type="submit" value="Filter" />
+        <input type="hidden" name="page" value="1" />
+        <input type="hidden" name="sortOrder" value="@ViewBag.CurrentSort" />
+        <input type="hidden" name="searchString" value="@ViewBag.CurrentSearchString" />
+
+    }
+    <div id="list"><a href="@Url.Action("AllAdverts", "Advert")" title="Adverts">Adverts List</a></div>
+        @using (Html.BeginForm("Index", "Advert", FormMethod.Get, new { @class = "indexSearchForm" }))
+            {
+                if (ViewBag.CurrentSearchCategory != null)
+                {
+                    foreach (var item in ViewBag.CurrentSearchCategory)
+                    {
+                    <input type="hidden" name="searchCategory" value="@item" />
+                }
+            }
+            if (ViewBag.CurrentSearchTag != null)
+            {
+                foreach (var item in ViewBag.CurrentSearchTag)
+                {
+                    <input type="hidden" name="searchTag" value="@item" />
+                }
+            }
+            <input type="hidden" name="sortOrder" value="@ViewBag.CurrentSort" />
+            <input type="search" name="searchString" value="@ViewBag.CurrentSearchString" placeholder="Search..." />
+            <input type="submit" value="&#128270;" style="background:none;border:none;" />
+        }
+</div>
+    <div class="mainblogview">
+        
+        @{Html.RenderPartial("Adverts");}
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.displayMenu == "Yes")
+{
+    <h1>Welcome Admin</h1>
+    <h3>
+     <ul>
+        <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
+        <li>@Html.ActionLink("Session State", "Source", "Users")</li>
+     </ul>
+</h3>
+}
+else
+{
+    <h2>Welcome :) <strong>@ViewBag.Name</strong> You are logged in </h2>
+
+    <li>@Html.ActionLink("Session State", "Source")</li>
+}
+
+

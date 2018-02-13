@@ -1,0 +1,25 @@
+﻿
+@model ASPMVC.Models.AdvViewModel
+
+@{
+    ViewBag.Title = "Delete Advert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("DeleteAdv", "Advert", FormMethod.Post, new { @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="delacccont">
+        <div class="delaccgrp">
+            <div class="delacclbl" style="text-align:center;">Are you sure?</div>
+        </div>
+        <div class="delaccgrp">
+            <input type="hidden" value="@Model.ID" name="advId" />
+            <input type="submit" value="Delete Advert" class="btn btn-default delaccbtn" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Main", "Index")
+</div>

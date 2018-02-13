@@ -1,0 +1,38 @@
+﻿@model ASPMVC.Models.AdvViewModel
+
+@{
+    ViewBag.Title = "AddNewCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddNewCategory", "Advert", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <table class="newCatCont">
+        <tr>
+            <td>Name :</td>
+            <td><input class="newCatInp" type="text" name="catName" /></td>
+        </tr>
+        <tr>
+            <td>UrlSeo :</td>
+            <td><input class="newCatInp" type="text" name="catUrlSeo" /></td>
+        </tr>
+        <tr>
+            <td>Description :</td>
+            <td><input class="newCatInp" type="text" name="catDesc" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @if (Model != null)
+                {
+                    <input type="hidden" value="@Model.ID" name="advid" />
+                }
+                <input class="newCatBtn" type="submit" value="&#x27a5;" />
+            </td>
+        </tr>
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

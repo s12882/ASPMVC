@@ -1,0 +1,1172 @@
+﻿@import "compass/css3";
+
+
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+	margin: 1uto;
+}
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*#region Blog*/
+.blogContainer {
+    overflow: hidden;
+    margin-top:50px;
+}
+
+.mainblogview {
+    width: 70%;
+    min-height: 500px;
+    float: left;
+    position: relative;
+}
+
+    .mainblogview hr {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+.mainblogbar {
+    margin: auto;
+    width: 100%;
+    min-height: 250px;
+}
+
+.mainblogbar #cat {
+    background: url(images/Post/dark-grey-header.png);
+    border-radius: 10px 10px 0px 0px;	
+	padding: 7px;
+    margin-left: 0px;
+    font-size: 25px;
+	text-align: center;
+}
+
+.mainblogbar #tags {
+    border: solid #750000 1px;
+	color: white;
+}
+
+.mainblogbar #tag {
+    font-size: 25px ;
+	color: white;
+}
+
+.mainblogbar #list {
+    font-size: 18px ;
+	color: black;
+	margin-bottom: -0px;
+}
+
+.button {
+    transition-duration: 0.4s;
+}
+
+.mainblogbar .button5{
+text-align: center;
+border-radius: 8px;
+background: #CCFFBB;
+font-size: 14pt;
+color: #005A04;
+border: 1px solid #FFFAF0;
+margin-left: 15px;
+}
+
+.mainblogbar .button6{
+width: 150px;
+text-align: center;
+border: 0.5px solid #FFFAF0;
+border-radius: 0px 0px 30px 30px;
+background: url(images/Post/dark-grey-header.png);	
+font-size: 15pt;
+color: black;
+margin-top: -1.5px;
+margin-left: 450px ;
+padding: 5px;
+z-index: 0;
+}
+
+nav#horizontal{
+    clear:both;
+    width:1100px;
+    height: 50px;
+	background: url(images/Post/dark-grey-header.png);	
+    margin-bottom: 0px;
+	margin-top: -15px;
+	border-radius: 0px 10px 10px 10px;
+}
+
+nav#horizontal li{
+    color: White;
+    font-size: 20px ;
+    list-style-type:none;
+	margin-top: 15px;
+    float:left;
+    width:170px;
+}
+
+nav#horizontal label{
+    color: White;
+    font-size: 20px ;
+    list-style-type:none;
+	margin-top: 0px;
+    float:left;
+    width:170px;
+}
+
+nav#horizontal li #filt{
+    color: White;
+    font-size: 20px ;
+    list-style-type:none;
+	margin-top: 10px;
+    width:100px;
+}
+
+#head-image img{
+width: 1366px;
+height: 100px;
+margin-bottom: -12px
+}
+
+.editComment{
+margin-top: 125px;
+}
+
+.editComment textarea {
+  width: 300px;
+  height: 75px;
+}
+
+.editReply{
+margin-top: 100px;
+}
+
+.editReply textarea {
+  width: 300px;
+  height: 75px;
+}
+
+.comTextSub{
+float: right;
+margin-right: 350px;
+margin-top: 38px;
+}
+
+#editor1{
+width: 200px;
+height:75px;
+}
+
+#editor2{
+width: 300px;
+height:100px;
+}
+
+#commentBody{
+width: 250px;
+height:75px;
+}
+
+/* Cначала обозначаем стили для IE8 и более старых версий
+т.е. здесь мы немного облагораживаем стандартный чекбокс. */
+.checkbox {
+  vertical-align: top;
+  margin: 0 3px 0 0;
+  width: 17px;
+  height: 17px;
+}
+/* Это для всех браузеров, кроме совсем старых, которые не поддерживают
+селекторы с плюсом. Показываем, что label кликабелен. */
+.checkbox + label {
+  cursor: pointer;
+}
+
+/* Далее идет оформление чекбокса в современных браузерах, а также IE9 и выше.
+Благодаря тому, что старые браузеры не поддерживают селекторы :not и :checked,
+в них все нижеследующие стили не сработают. */
+
+/* Прячем оригинальный чекбокс. */
+.checkbox:not(checked) {
+  position: absolute;
+  opacity: 0;
+}
+.checkbox:not(checked) + label {
+  position: relative; /* будем позиционировать псевдочекбокс относительно label */
+  padding: 0 0 0 60px; /* оставляем слева от label место под псевдочекбокс */
+}
+/* Оформление первой части чекбокса в выключенном состоянии (фон). */
+.checkbox:not(checked) + label:before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 50px;
+  height: 26px;
+  border-radius: 13px;
+  background: #CDD1DA;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}
+/* Оформление второй части чекбокса в выключенном состоянии (переключатель). */
+.checkbox:not(checked) + label:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0 2px 5px rgba(0,0,0,.3);
+  transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */
+}
+/* Меняем фон чекбокса, когда он включен. */
+.checkbox:checked + label:before {
+  background: #1E90FF;
+}
+/* Сдвигаем переключатель чекбокса, когда он включен. */
+.checkbox:checked + label:after {
+  left: 26px;
+}
+/* Показываем получение фокуса. */
+.checkbox:focus + label:before {
+  box-shadow: 0 0 0 3px #008B8B;
+}
+
+    .mainblogbar .blogControlPanel {
+        background-color: rgba(255, 255, 255, 0.50);
+        border: solid #750000 0.5px;
+        -moz-box-shadow: 0 1px 4px #999;
+        -webkit-box-shadow: 0 1px 4px #999;
+        box-shadow: 0 1px 4px #999;
+        width: 99%;
+        margin-bottom: 5px;
+        overflow: hidden;
+    }
+
+        .mainblogbar .blogControlPanel .blogCtrlTable {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+            .mainblogbar .blogControlPanel .blogCtrlTable td {
+                padding: 1px 5px;
+            }
+
+            .mainblogbar .blogControlPanel .blogCtrlTable .blgCtrlPnl {
+                text-decoration: none;
+                font-size: 25px;
+            }
+
+    .mainblogbar .adminBlogCtrl {
+        background-color: rgba(255, 255, 255, 0.50);
+        border: solid #750000 0.5px;
+        -moz-box-shadow: 0 1px 4px #999;
+        -webkit-box-shadow: 0 1px 4px #999;
+        box-shadow: 0 1px 4px #999;
+        width: 99%;
+        margin-bottom: 5px;
+        overflow: hidden;
+    }
+
+        .mainblogbar .adminBlogCtrl table {
+            margin: 10px;
+        }
+
+            .mainblogbar .adminBlogCtrl table td a {
+                text-decoration: none;
+                color: blue;
+            }
+
+/*#endregion Blog*/
+
+/*#region Posts*/
+
+.postDescContainer {
+	border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.50);
+    border-radius: 12px;
+    width: 100%;
+    margin: 10px auto;
+	margin-top: 5px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+    .postDescContainer a {
+        text-decoration: none;
+        color: #5F9EA0;
+        width: 80%;
+    }
+
+    .postDescContainer .postDescTitle {
+        width: 80%;
+    }
+
+        .postDescContainer .postDescTitle h3 {
+            margin: 5px 0;
+        }
+
+    .postDescContainer .postPubDate {
+        font-style: italic;
+        color: #5f80ff;
+        margin: 5px 0;
+        float: right;
+    }
+
+    .postDescContainer .postDescCategory {
+        display: inline-block;
+        margin: 5px 0;
+    }
+
+        .postDescContainer .postDescCategory .postDescCatNames {
+            float: left;
+        }
+
+        .postDescContainer .postDescCategory label {
+            float: left;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+    .postDescContainer .postDescBody {
+        margin-bottom: 5px;
+    }
+
+    .postDescContainer .postVidCont {
+        float: right;
+        width: 200px;
+    }
+
+    .postDescContainer .postVidThumb {
+        width: 200px;
+        height: 100px;
+    }
+    .postDescContainer .postVidThumb img{
+        margin-bottom: 5px;
+    }
+.postLikes {
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.postDislikes {
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.mainblogview .paging {
+    position: absolute;
+    bottom: 0;
+}
+
+.mainblogview #spacer {
+    width: 100%;
+    height: 100px;
+    float: left;
+    display: inline-block;
+}
+
+.mainblogview .pagination-container {
+    margin-left: 20px;
+}
+
+.mainblogview .pagenum {
+    margin-left: 20px;
+}
+/*#endregion Posts*/
+
+/*#region Allposts*/
+.postsTable {
+    background-color: rgba(255, 255, 255, 0.50);
+    -moz-box-shadow: 0 1px 4px #999;
+    -webkit-box-shadow: 0 1px 4px #999;
+    box-shadow: 0 1px 4px #999;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .postsTable a {
+        text-decoration: none;
+        color: blue;
+    }
+
+    .postsTable th {
+        border: solid #750000 0.5px;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .postsTable td {
+        padding: 5px;
+        border: solid #750000 0.5px;
+    }
+
+    .postsTable .tableTitle {
+        width: 200px;
+    }
+
+.submitBtnLink {
+    border: none;
+    cursor: pointer;
+    color: blue;
+    font-weight: bold;
+    background: none;
+    font-size: 16px;
+}
+
+.postsSearch {
+    width: 100%;
+    margin: 50px 0 10px 0;
+    overflow: hidden;
+}
+
+    .postsSearch .allPostsForm {
+        float: right;
+    }
+
+.postsFilter {
+    float: left;
+    max-width: 700px;
+}
+
+    .postsFilter table th {
+        text-align: left;
+        display: table-cell;
+        vertical-align: text-top;
+    }
+
+    .postsFilter .postsFltInp {
+        width: 100px;
+        float: left;
+    }
+
+    .postsFilter .postFiltBtn {
+        font-size: 18px;
+        border: 1.5px groove;
+        border-top: none;
+        border-left: none;
+        border-radius: 5px;
+        float: right;
+        background-color: rgba(255, 255, 255, 0.58);
+        margin-top: 10px;
+    }
+
+/*#endregion Allposts*/
+
+
+/*#region Post*/
+.postContainer {
+    background-color: #DCDCDC;
+    border-radius: 10px;
+    width: 95%;
+    margin: 0 auto;
+	margin-top: 0px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#previous
+{
+     background: url(images/previous.png);	 
+     width: 120px;
+     height: 47px;
+     text-indent: -9999px; 
+}
+
+#next
+{
+     background: url(images/Next.png);	 
+     width: 120px;
+     height: 47px;
+     text-indent: -9999px; 
+}
+
+
+    .postContainer .postHeader {
+	margin-top: 20px;
+        overflow: hidden;
+    }
+
+    .postContainer a {
+        text-decoration: none;
+        color: blue;
+    }
+
+    .postContainer .postTitle {
+        text-align: center;
+    }
+
+    .postContainer .postVote {
+        float: left;
+        margin-left: 10px;
+        overflow: hidden;
+        background: linear-gradient(lightgreen,#ff6d6d);
+        border-radius: 10px 0px 0 10px;
+        min-width: 50px;
+    }
+
+        .postContainer .postVote table {
+            margin: 0 auto;
+        }
+
+    .postContainer .postShare {
+        float: right;
+        margin-right: -10px;
+        border-radius: 10px 0 0 10px;
+        background: linear-gradient(#bdbdff,#a4a4fc);
+        width: 40px;
+    }
+
+        .postContainer .postShare table {
+            margin: 0 auto;
+        }
+
+    .postContainer .advImage {
+	float: left;
+        width: 560px;
+		height: 402px;
+		 border: 5px solid transparent;
+		 border-radius:10px ;
+
+	  -moz-border-image: -moz-linear-gradient(top, lightgreen 0%, #ff6d6d 100%);
+	  -webkit-border-image: -webkit-linear-gradient(top, lightgreen 0%, #ff6d6d 100%);
+	  border-image: linear-gradient(to bottom, lightgreen 0%, #ff6d6d 25%);
+
+	    border-image-slice: 1;
+		margin-bottom: 30px;
+		margin-right: -100px
+		margin-left: 60px;
+		position: relative;
+		overflow:hidden;	
+    }
+	
+	.postContainer .advImage iframe {
+	
+        width: 560px;
+		height: 402px;
+	
+    }
+
+    .postContainer .postBody {
+        width: 40%;
+		float: left;
+        margin-left: 10px;
+		background-color: lightgrey;
+        padding: 10px;
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+		border-radius: 8px;
+    }
+	
+	.postContainer .advAuthor {
+	    float: left;
+        width: 90%;
+        margin: 10px auto;
+		margin-left: 70px;
+        position: relative;
+		background-color: lightgrey;
+        padding: 10px;
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;	
+        border-radius: 8px;		
+    }
+
+        .postContainer .postBody pre, .commentBody pre {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #750000;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+.bottomContainer {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.commentContainer {
+    width: 70%;
+    min-width: 520px;
+    overflow: hidden;
+}
+
+    .commentContainer .commHeader {
+        width: 98%;
+        padding: 5px;
+        color: #5353f6;
+    }
+
+        .commentContainer .commHeader .commentSort {
+            float: right;
+        }
+
+            .commentContainer .commHeader .commentSort td {
+                padding-left: 15px;
+            }
+
+                .commentContainer .commHeader .commentSort td a {
+                    text-decoration: none;
+                    color: blue;
+                }
+
+                .commentContainer .commHeader .commentSort td #active {
+                    color: rgba(0, 49, 116, 0.57);
+                }
+
+
+
+
+blockquote {
+    padding: 0 5px;
+    background-color: rgba(255, 255, 0, 0.33);
+}
+
+.newComment {
+    width: 93%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+    .newComment .comImg {
+        float: left;
+        margin-right: 5px;
+    }
+
+    .newComment .comTextdiv {
+        width: 98%;
+        min-height: 40px;
+        max-height: 350px;
+        border: 1.5px groove;
+        border-bottom: none;
+        border-right: none;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.58);
+        overflow: auto;
+        overflow-x: hidden;
+        padding: 5px;
+        line-height: 10px;
+        font-size: 18px;
+    }
+
+    .newComment .comTextarea {
+        width: 98%;
+        min-height: 100px;
+        border: 1.5px groove;
+        border-bottom: none;
+        border-right: none;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.58);
+        overflow: auto;
+        overflow-x: hidden;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .newComment .comTextBtn {
+          font-size: 24px;
+            border: 1.5px groove;
+            border-top: none;
+            border-left: none;
+            border-radius: 5px;
+            float: left;
+            background-color: rgba(255, 255, 255, 0.58);
+       
+    }
+
+[contentEditable=true]:empty:not(:focus):before {
+    line-height: 40px;
+    color: #aaa4a4;
+    content: attr(data-ph);
+}
+
+.commentContainer .userImage {
+    height: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+.commentContainer .userComment {
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    border: 1.5px groove;
+    border-bottom: none;
+    border-right: none;
+    border-radius: 10px;
+}
+
+    .commentContainer .userComment .commentControl {
+        float: right;
+    }
+
+        .commentContainer .userComment .commentControl a {
+            text-decoration: none;
+            color: blue;
+            cursor: pointer;
+        }
+
+    .commentContainer .userComment .parentReply {
+        width: 95%;
+        padding: 10px 0 0 20px;
+        margin-bottom: 5px;
+    }
+
+        .commentContainer .userComment .parentReply .childReply {
+            padding: 10px 0 0 30px;
+            margin-bottom: 5px;
+        }
+
+.commentContainer .commentUserName {
+    color: blue;
+}
+
+    .commentContainer .commentUserName .cmntTime {
+        color: gray;
+        font-size: smaller;
+    }
+
+.commentContainer .commentDate {
+    color: #5f80ff;
+    font-style: italic;
+}
+
+.commentContainer .commentBody {
+    margin-top: 25px;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.replySubMenu {
+    margin-bottom: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 25px;
+    padding: 5px;
+}
+
+    .replySubMenu a {
+        text-decoration: none;
+        font-style: italic;
+        color: #7575fb;
+        line-height: 25px;
+        margin: 0 5px;
+        float: left;
+    }
+
+    .replySubMenu img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .replySubMenu .shareParent {
+        overflow: hidden;
+        display: inline-block;
+        position: relative;
+    }
+
+.postMenu {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+    .postMenu .postMenuSub {
+        width: 55px;
+        float: right;
+    }
+
+.commentMenu {
+    width: 60px;
+    float: right;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.roleView {
+height: 30px;
+}
+
+.roleView img{
+margin-top: 5px;
+float: right; 
+width: 20px;
+}
+
+/*#endregion Post*/
+
+/*#region EditPost*/
+.editPostContainer {
+    background-color: rgba(255, 255, 255, 0.70);
+    border-radius: 10px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.editPostContainer .imgurl {
+    margin-top: -85px;
+}
+
+.editPostContainer .addbtn img {
+    margin-top: -155px;
+}
+
+    .editPostContainer .editPostId {
+        width: 100%;
+        overflow: hidden;
+        float: left;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+        .editPostContainer .editPostId .editPostIdLbl {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .editPostContainer .editPostId .editPostIdInp {
+            width: 50px;
+            display: block;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+    .editPostContainer .editPostTitle {
+        width: 100%;
+    }
+
+        .editPostContainer .editPostTitle .editPostTitleLbl {
+            text-align: center;
+            float: left;
+        }
+
+        .editPostContainer .editPostTitle .editPostTitleInp {
+            width: 100%;
+            display: block;
+            height: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+    .editPostContainer .editPostVideo {
+        overflow: hidden;
+        width: 100%;
+    }
+
+        .editPostContainer .editPostVideo .editPostVidCont {
+            border: groove 2px;
+            border-bottom: none;
+            border-right: none;
+            background-color: white;
+            border-radius: 10px;
+            height: 200px;
+            text-align: center;
+            float: left;
+			
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+        .editPostContainer .editPostVideo .editPostVideoInp {
+            margin: 5px 10px 0 5px;
+            border-radius: 10px;
+            height: 25px;
+        }
+
+    .editPostContainer .editPostCategories {
+        overflow: hidden;
+        width: 100%;
+    }
+
+        .editPostContainer .editPostCategories .editPostCatInp {
+            border: groove 2px;
+            border-bottom: none;
+            border-right: none;
+            background-color: white;
+            border-radius: 10px;
+            height: 30px;
+            text-align: center;
+            float: left;
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+            .editPostContainer .editPostCategories .editPostCatInp .catName {
+                float: left;
+                margin: 5px;
+            }
+
+    .editPostContainer .editPostTags {
+        overflow: hidden;
+        width: 100%;
+    }
+
+        .editPostContainer .editPostTags .editPostTagInp {
+            border: groove 2px;
+            border-bottom: none;
+            border-right: none;
+            background-color: white;
+            border-radius: 10px;
+            height: 30px;
+            text-align: center;
+            float: left;
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+            .editPostContainer .editPostTags .editPostTagInp .tagName {
+                float: left;
+                margin: 5px;
+            }
+
+    .editPostContainer .editPostMeta, .editPostContainer .editPostSeo {
+        width: 50%;
+        border-radius: 10px;
+        height: 25px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .editPostContainer .editPostDesc {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .editPostContainer .editPostBody {
+        overflow: hidden;
+        width: 100%;
+    }
+
+        .editPostContainer .editPostBody .comTextBtn {
+            font-size: 24px;
+            border: 1.5px groove;
+            border-top: none;
+            border-left: none;
+            border-radius: 5px;
+            float: right;
+            background-color: rgba(255, 255, 255, 0.58);
+        }
+
+.addVidCont {
+    width: 50%;
+    margin: 0 auto;
+}
+
+    .addVidCont .addVidToPost {
+        border-radius: 10px;
+        height: 25px;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .addVidCont .addVidBtn {
+        font-size: 24px;
+        border: 1.5px groove;
+        border-top: none;
+        border-left: none;
+        border-radius: 5px;
+        float: right;
+        background-color: rgba(255, 255, 255, 0.58);
+    }
+
+.addCatCont, .newCatCont {
+    margin: 0 auto;
+}
+
+    .addCatCont .addCatInp, .newCatCont .newCatInp {
+        min-width: 200px;
+        border: groove 2px;
+        border-bottom: none;
+        border-right: none;
+        background-color: white;
+        border-radius: 10px;
+        height: 25px;
+        text-align: center;
+        float: left;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+
+    .addCatCont .addCatBtn, .newCatCont .newCatBtn {
+        font-size: 18px;
+        border: 1.5px groove;
+        border-top: none;
+        border-left: none;
+        border-radius: 5px;
+        float: right;
+        background-color: rgba(255, 255, 255, 0.58);
+        margin-top: 10px;
+    }
+/*#endregion EditPost*/
+
+/*#region IndexFilter*/
+
+.indexFiltBtn {
+    font-size: 14px;
+    color: blue;
+    border: 1.5px groove;
+    border-top: none;
+    border-left: none;
+    border-radius: 5px;
+    float: right;
+    background-color: rgba(255, 255, 255, 0.58);
+    margin: 10px;
+}
+
+.indexSearchForm {
+    margin: 10px;
+	margin-bottom: -50px;
+}
+
+input[type=search], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0px 10px;
+	margin-left: -10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/*#endregion IndexFilter*/
+
+/*#region catsAndTags*/
+
+.catsAndTags{
+    border: 2px solid;
+	border-radius: 10px;
+    margin:0 auto;
+	margin-top: 20px;
+    border-collapse:separate;
+    border-spacing:50px 0;
+}
+.catsAndTags th{
+    padding-bottom:10px;
+}
+.catsAndTags a{
+    text-decoration:none;
+    color:blue;
+}
+.catsAndTags td{
+float: left;
+    display:table-cell;
+    vertical-align:text-top;
+    padding-bottom:10px;
+}
+/*#endregion catsAndTags*/
+
+.addthis_sharing_toolbox{
+        margin:10px auto;
+        width: 360px;
+}
+
+.form-style-2{
+    margin-top: 15px;
+    overflow:auto;
+    max-width: 500px;
+    padding: 5px 12px 10px 20px;
+    font: 13px Arial, Helvetica, sans-serif;
+}
+.form-style-2-heading{
+    font-weight: bold;
+    font-style: italic;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+    font-size: 15px;
+    padding-bottom: 3px;
+}
+.form-style-2 label{
+    display: block;
+    margin: 10px 0px 2px 0px;
+}
+.form-style-2 label > span{
+    width: 100px;
+    font-weight: bold;
+    float: left;
+    padding-top: 10px;
+    padding-right: 5px;
+}
+.form-style-2 span.required{
+    color:red;
+}
+.form-style-2 .tel-number-field{
+    width: 40px;
+    text-align: center;
+}
+.form-style-2 input.input-field{
+    width: 48%;
+    
+}
+
+.form-style-2 input.input-field, 
+.form-style-2 .tel-number-field, 
+.form-style-2 .textarea-field, 
+ .form-style-2 .select-field{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+}
+.form-style-2 .input-field:focus, 
+.form-style-2 .tel-number-field:focus, 
+.form-style-2 .textarea-field:focus,  
+.form-style-2 .select-field:focus{
+    border: 1px solid #0C0;
+}
+.form-style-2 .textarea-field{
+    height:100px;
+    width: 55%;
+}
+.form-style-2 input[type=submit],
+.form-style-2 input[type=button]{
+    border: none;
+    padding: 8px 15px 8px 15px;
+    background: #004d00;
+    color: #fff;
+    box-shadow: 1px 1px 4px #DADADA;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.form-style-2 input[type=submit]:hover,
+.form-style-2 input[type=button]:hover{
+    background: #EA7B00;
+    color: #fff;
+}
